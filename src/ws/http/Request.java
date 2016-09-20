@@ -155,7 +155,8 @@ public class Request extends Message<Request> {
      *
      * @throws MalformedURLException
      */
-    private void buildQueryString() throws MalformedURLException {
+    @SuppressWarnings("rawtypes")
+	private void buildQueryString() throws MalformedURLException {
         StringBuilder builder = new StringBuilder();
 
         // Put the query parameters on the URL before issuing the request
