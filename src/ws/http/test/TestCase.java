@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import ws.http.Request;
 import ws.http.Response;
-import ws.http.doc.json.JSON;
-import ws.http.doc.json.JSONArray;
-import ws.http.doc.json.JSONObject;
+import ws.http.tools.JSON;
+import ws.http.tools.json.Json;
+import ws.http.tools.json.JsonValue;
 
 import java.util.logging.*;
 
@@ -24,27 +24,30 @@ public class TestCase {
 	
 	public void testJson()
 	{
-		logger.info( JSON.toJSON(null) );
-//		String json = "{\"account_id\":\"121\",\"channel\":\"ycb\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
-//		JSONObject jo = (JSONObject) JSON.parseJSON(json);
+//		logger.info( JSON.toJSON(null) );
+		logger.info( Json.NULL.toString() );
+		String json = "{\"account_id\":\"121\",\"channel\":\"ycb\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
+		JsonValue jo =  JSON.parseJSON(json);
+		logger.info( jo.toString() );
+		logger.info( JSON.toJSON(jo) );
 //		System.out.println(jo.getStringValue("channel"));
 //		logger.info(jo.getStringValue("channel"));
 //		logger.info(jo.toString());
 		
-		Object jo = JSON.parseJSON("[{\"a\":\"21\"}]");
+//		Object jo = JSON.parseJSON("[{\"a\":\"21\"}]");
 		
-		System.out.println(jo instanceof JSONObject);
+//		System.out.println(jo instanceof JSONObject);
 		
 	}
 	
 	public void testGet() throws IOException
 	{
-		Response httpResponse = new Request("https://freegeoip.net/csv/8.8.8.8")
+		Response httpResponse = new Request("http://freegeoip.net/csv/8.8.8.8")
                 .addHeader("Content-Type", "application/json").getResource();
 
         String responseBody = httpResponse.getBody();
 		
-        logger.info(responseBody);
+        logger.info(JSON.toJSON(responseBody));
         
 	}
 	
@@ -58,7 +61,7 @@ public class TestCase {
         String responseBody = httpResponse.getBody();
 		logger.info(responseBody);
 		
-		logger.info(JSON.toJSON(httpResponse));
+//		logger.info(JSON.toJSON(httpResponse));
 	}
 	
 }
