@@ -1,12 +1,12 @@
-package ws.http.json;
+package ws.http.doc.json;
 
 import java.util.HashMap;
 import java.util.Stack;
 
 public class ToObject {
-	
+
 	public static Object parse(String text) {
-		return (null == text || text.isEmpty()) ? null : parseJSON(text);
+		return (null == text || text.isEmpty()) ? null : ToObject.parseJSON(text);
 	}
 
 	public static <T extends Object> T parse(String text, Class<T> clazz) {
@@ -15,11 +15,12 @@ public class ToObject {
 		return CaseType.objectValue(parseJSONObject(text), clazz);
 	}
 
-	public static JSONArray parseJSONArray(String text) {
+	@SuppressWarnings("unused")
+	private static JSONArray parseJSONArray(String text) {
 		return ((null == text || text.isEmpty()) || !isJSONArray(text)) ? null : JSONArray.class.cast(parseJSON(text));
 	}
 
-	public static JSONObject parseJSONObject(String text) {
+	private static JSONObject parseJSONObject(String text) {
 		return ((null == text || text.isEmpty()) || !isJSONObject(text)) ? null : JSONObject.class.cast(parseJSON(text));
 	}	
 

@@ -1,4 +1,4 @@
-package ws.http.json;
+package ws.http.doc.json;
 
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;

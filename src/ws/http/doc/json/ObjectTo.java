@@ -1,4 +1,4 @@
-package ws.http.json;
+package ws.http.doc.json;
 
 import java.lang.reflect.Array;  
 import java.lang.reflect.Field;  
@@ -55,7 +55,7 @@ public class ObjectTo {
 		StringBuffer sb = new StringBuffer();
 		sb.append('[');
 
-		// ´Ë´¦¼õ1ÊÇÎªÁËÏÂÃæµÄ ¶ººÅ ×·¼Ó
+		// ï¿½Ë´ï¿½ï¿½ï¿½1ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ×·ï¿½ï¿½
 		int len = Array.getLength(array) - 1;
 		if (len > -1) {
 			int i;
