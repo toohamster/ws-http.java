@@ -116,7 +116,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(int value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -129,7 +129,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(long value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -142,7 +142,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(float value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -155,7 +155,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(double value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -168,7 +168,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(boolean value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -180,7 +180,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    * @return the array itself, to enable method chaining
    */
   public JsonArray add(String value) {
-    values.add(Json.value(value));
+    values.add(JSON.value(value));
     return this;
   }
 
@@ -213,7 +213,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, int value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
@@ -231,7 +231,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, long value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
@@ -249,7 +249,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, float value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
@@ -267,7 +267,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, double value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
@@ -285,7 +285,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, boolean value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
@@ -303,7 +303,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
    *           <code>index &gt;= size</code>
    */
   public JsonArray set(int index, String value) {
-    values.set(index, Json.value(value));
+    values.set(index, JSON.value(value));
     return this;
   }
 
