@@ -24,6 +24,8 @@ package ws.http.tools.json;
 import java.io.IOException;
 import java.io.Reader;
 
+import ws.http.tools.File;
+
 /**
  * This class serves as the entry point to the minimal-json API.
  * <p>
@@ -32,7 +34,7 @@ import java.io.Reader;
  * </p>
  * 
  * <pre>
- * JsonObject object = Json.parse(string).asObject();
+ * JsonObject object = JSON.parse(string).asObject();
  * </pre>
  * <p>
  * To <strong>create</strong> a JSON data structure to be serialized, use the
@@ -42,7 +44,7 @@ import java.io.Reader;
  * </p>
  * 
  * <pre>
- * String string = Json.object().add("foo", 23).add("bar", true).toString();
+ * String string = JSON.object().add("foo", 23).add("bar", true).toString();
  * </pre>
  * <p>
  * To create a JSON array from a given Java array, you can use one of the
@@ -51,7 +53,7 @@ import java.io.Reader;
  * 
  * <pre>
  * String[] names = ...
- * JsonArray array = Json.array(names);
+ * JsonArray array = JSON.array(names);
  * </pre>
  */
 public final class JSON {
@@ -329,6 +331,37 @@ public final class JSON {
 		DefaultHandler handler = new DefaultHandler();
 		new JsonParser(handler).parse(reader);
 		return handler.getValue();
+	}
+
+	/**
+	 * Parses the given input path as JSON
+	 * 
+	 * @param path
+	 * @param isUrl
+	 * @return a value that represents the parsed JSON
+	 */
+	public static JsonValue parseJSONFile(String path, boolean isUrl) {
+		if (path == null) {
+			throw new NullPointerException("path is null");
+		}
+		if ( isUrl )
+		{
+			return parseJSON(File.readFromURL(path));
+		}
+		
+		return parseJSON(File.readFromPath(path));
+	}
+	
+	/**
+	 * querying JSONNode objects with varieties of expressions
+	 * 
+	 * @param json
+	 * @param queryMl
+	 * @return a value that represents the parsed JSON
+	 */
+	public static JsonValue query(JsonValue json, String queryMl)
+	{
+		return Query.find(json, queryMl);
 	}
 
 	/**

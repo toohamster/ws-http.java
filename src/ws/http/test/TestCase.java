@@ -24,19 +24,21 @@ public class TestCase {
 	public void testJson()
 	{
 //		logger.info( JSON.toJSON(null) );
-		logger.info( JSON.NULL.toString() );
-		String json = "{\"account_id\":\"121\",\"channel\":\"ycb\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
-		JsonValue jo =  JSON.parseJSON(json);
-		logger.info( jo.toString() );
-		logger.info( JSON.toJSON(jo) );
+//		logger.info( JSON.NULL.toString() );
+//		String json = "{\"account_id\":\"121\",\"channel\":\"ycb\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
+//		JsonValue jo =  JSON.parseJSON(json);
+//		logger.info( jo.toString() );
+//		logger.info( JSON.toJSON(jo) );
 //		System.out.println(jo.getStringValue("channel"));
 //		logger.info(jo.getStringValue("channel"));
-		logger.info( JSON.object().add("list", JSON.array().add(JSON.object().add("id", 123).add("age", 456))).toString() );
+//		logger.info( JSON.object().add("list", JSON.array().add(JSON.object().add("id", 123).add("age", 456))).toString() );
 		
 //		Object jo = JSON.parseJSON("[{\"a\":\"21\"}]");
 		
 //		System.out.println(jo instanceof JSONObject);
 		
+//		JsonValue jo = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
+//		logger.info(jo.asObject().get("id").toString());
 	}
 	
 	public void testGet() throws IOException
