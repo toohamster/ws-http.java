@@ -23,21 +23,22 @@ public class TestCase {
 	
 	public void testJson()
 	{
+		JsonValue jsonobj = null;
 //		logger.info( JSON.toJSON(null) );
 //		logger.info( JSON.NULL.toString() );
 //		String json = "{\"account_id\":\"121\",\"channel\":\"ycb\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
-//		JsonValue jo =  JSON.parseJSON(json);
-//		logger.info( jo.toString() );
-//		logger.info( JSON.toJSON(jo) );
-//		System.out.println(jo.getStringValue("channel"));
-//		logger.info(jo.getStringValue("channel"));
+//		jsonobj =  JSON.parseJSON(json);
+//		System.out.println("dddd");
+//		System.out.println( JSON.query(jsonobj, "sign").asString() );
+
 //		logger.info( JSON.object().add("list", JSON.array().add(JSON.object().add("id", 123).add("age", 456))).toString() );
-		
-//		Object jo = JSON.parseJSON("[{\"a\":\"21\"}]");
-		
-//		System.out.println(jo instanceof JSONObject);
-		
-//		JsonValue jo = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
+				
+		jsonobj = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
+//		logger.info(jsonobj.toString());
+//		logger.info(JSON.query(jsonobj, "id").asString());
+//		logger.info(JSON.query(jsonobj, "description").asString());
+//		System.out.println(JSON.query(jsonobj, "folders.1.name"));
+		System.out.println(JSON.query(jsonobj, "requests.0.responses.0.headers.2.key").asString());
 //		logger.info(jo.asObject().get("id").toString());
 	}
 	
