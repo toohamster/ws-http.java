@@ -8,6 +8,7 @@ import ws.http.tools.json.JSON;
 import ws.http.tools.json.JsonValue;
 import ws.http.tools.xml.XML;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.*;
 
@@ -44,16 +45,20 @@ public class TestCase {
 //				
 //		jsonobj = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
 //		System.out.println(XML.toXML(jsonobj, "doc"));
-		HashMap<String, String> a = new HashMap<>();
+		
+		ArrayList<Object> b = new ArrayList<>();
+		b.add("aaa");
+		b.add("aaa");
+		b.add(jsonobj);
+		b.add("aaa");
+		
+		HashMap<String, Object> a = new HashMap<>();
 		a.put("ssd", "ddd");
-		a.put("ssd1", "ddd");
-		a.put("ssd2", "ddd");
-		a.put("ssd3", "ddd");
-		a.put("ssd4", "ddd");
-		a.put("ssd5", "ddd");
-		a.put("ssd6", "ddd");
+		
+		a.put("ssd5", JSON.array(1,2));
+		a.put("ssd6", b);
 		a.put("ssd7", "ddd");
-		System.out.println(XML.toXML(a, "doc"));
+		System.out.println( XML.toXML(a, "doc"));
 //		logger.info(jsonobj.toString());
 //		System.out.println(JSON.query(jsonobj, "id").asString());
 //		System.out.println(JSON.query(jsonobj, "description").asString());

@@ -1,6 +1,17 @@
 package ws.http.tools.xml;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.Iterator;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.InputSource;
 
 import ws.http.tools.json.JSON;
 import ws.http.tools.json.JsonArray;
@@ -13,12 +24,12 @@ public class XML {
 	{
 		if (value instanceof JsonValue)
 		{
-			return jsonToXML((JsonValue) value, tag);
+			return prettyXml(jsonToXML((JsonValue) value, tag));
 		}
-		// 进行1次反转
+		// 
 		value = JSON.toJSON(value);
 		value = JSON.parseJSON((String) value);
-		return jsonToXML((JsonValue) value, tag);
+		return prettyXml(jsonToXML((JsonValue) value, tag));
 	}
 	
 	private static String jsonToXML(JsonValue json, String tag)
@@ -42,7 +53,24 @@ public class XML {
 			while (keys.hasNext()) {
 				String key = keys.next();
 				JsonValue val = jo.get(key);
-				sb.append(toXML(val, key));
+				
+				if (val.isArray())
+				{
+					if ("values".equals(key))
+					{
+						sb.append(jsonToXML(val,null));
+					}
+					else
+					{
+						sb.append(jsonToXML(val, key));
+					}
+				}
+				else
+				{
+					sb.append(jsonToXML(val, key));
+				}
+				
+//				sb.append(jsonToXML(val, key));
 			}
 			
 			if (tag != null) {
@@ -62,25 +90,25 @@ public class XML {
 			
 			for (JsonValue val : ja.values()) {
 				
-				if (tag != null) {
-		            sb.append('<');
-		            sb.append(tag);
-		            sb.append('>');
-		        }
-				
 				if (val.isArray() || val.isObject()) {
-					sb.append(toXML(val, tag));
+					sb.append(jsonToXML(val, tag));
 				}
 				else
 				{
-					sb.append(toXML(val, null));
+					if (tag != null) {
+			            sb.append('<');
+			            sb.append(tag);
+			            sb.append('>');
+			        }
+					sb.append(jsonToXML(val, null));
+					if (tag != null) {
+		                sb.append("</");
+		                sb.append(tag);
+		                sb.append('>');
+		            }
 				}
 				
-				if (tag != null) {
-	                sb.append("</");
-	                sb.append(tag);
-	                sb.append('>');
-	            }
+				
 			}
 			
 			return sb.toString();
@@ -111,6 +139,21 @@ public class XML {
 		
 		return "<" + tag + ">" + val + "</" + tag + ">";
 	}
+	
+	private static String prettyXml(String xml){
+        try{
+            Transformer serializer= SAXTransformerFactory.newInstance().newTransformer();
+            serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+            serializer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+            serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            Source xmlSource=new SAXSource(new InputSource(new ByteArrayInputStream(xml.getBytes())));
+            StreamResult res =  new StreamResult(new ByteArrayOutputStream());            
+            serializer.transform(xmlSource, res);
+            return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+        }catch(Exception e){
+            return xml;
+        }
+    }
 	
 	public static XmlValue parseXML(String string) {
 		
