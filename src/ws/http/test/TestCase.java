@@ -58,6 +58,7 @@ public class TestCase {
 		a.put("ssd5", JSON.array(1,2));
 		a.put("ssd6", b);
 		a.put("ssd7", "ddd");
+//		System.out.println(JSON.toJSON(a));
 		System.out.println( XML.toXML(a, "doc"));
 //		logger.info(jsonobj.toString());
 //		System.out.println(JSON.query(jsonobj, "id").asString());

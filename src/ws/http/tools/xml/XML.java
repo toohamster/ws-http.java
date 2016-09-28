@@ -26,7 +26,6 @@ public class XML {
 		{
 			return prettyXml(jsonToXML((JsonValue) value, tag));
 		}
-		// 
 		value = JSON.toJSON(value);
 		value = JSON.parseJSON((String) value);
 		return prettyXml(jsonToXML((JsonValue) value, tag));

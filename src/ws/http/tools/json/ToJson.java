@@ -13,6 +13,8 @@ public class ToJson {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static String toJSON(Object value) {
 		if (value == null) return "null";
+		
+		if (value instanceof JsonValue) return value.toString();
 
 		if (value instanceof Number) return value.toString();
 		if (value instanceof Boolean) return value.toString();
