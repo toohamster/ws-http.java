@@ -53,23 +53,7 @@ public class XML {
 				String key = keys.next();
 				JsonValue val = jo.get(key);
 				
-				if (val.isArray())
-				{
-					if ("values".equals(key))
-					{
-						sb.append(jsonToXML(val,null));
-					}
-					else
-					{
-						sb.append(jsonToXML(val, key));
-					}
-				}
-				else
-				{
-					sb.append(jsonToXML(val, key));
-				}
-				
-//				sb.append(jsonToXML(val, key));
+				sb.append(jsonToXML(val, key));
 			}
 			
 			if (tag != null) {

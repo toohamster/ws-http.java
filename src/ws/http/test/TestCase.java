@@ -29,7 +29,7 @@ public class TestCase {
 		JsonValue jsonobj = null;
 //		logger.info( JSON.toJSON(null) );
 //		logger.info( JSON.NULL.toString() );
-		String json = "{\"account_id\":121,\"channel\":\"\",\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
+		String json = "{\"account_id\":121,\"channel\":{\"a\":[6,6,\"jj\"]},\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
 		jsonobj =  JSON.parseJSON(json);
 		
 //		System.out.println(XML.toXML(jsonobj));
@@ -49,12 +49,12 @@ public class TestCase {
 		ArrayList<Object> b = new ArrayList<>();
 		b.add("aaa");
 		b.add("aaa");
-		b.add(jsonobj);
+		
 		b.add("aaa");
 		
 		HashMap<String, Object> a = new HashMap<>();
 		a.put("ssd", "ddd");
-		
+		a.put("ssd1", jsonobj);
 		a.put("ssd5", JSON.array(1,2));
 		a.put("ssd6", b);
 		a.put("ssd7", "ddd");
