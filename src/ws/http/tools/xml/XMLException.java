@@ -1,17 +1,10 @@
 package ws.http.tools.xml;
 
-/**
- * The JSONException is thrown by the JSON.org classes when things are amiss.
- *
- * @author JSON.org
- * @version 2015-12-09
- */
+@SuppressWarnings("serial")
 public class XMLException extends RuntimeException {
-    /** Serialization ID */
-    private static final long serialVersionUID = 0;
-
+    
     /**
-     * Constructs a JSONException with an explanatory message.
+     * Constructs a XMLException with an explanatory message.
      *
      * @param message
      *            Detail about the reason for the exception.
@@ -21,7 +14,7 @@ public class XMLException extends RuntimeException {
     }
 
     /**
-     * Constructs a JSONException with an explanatory message and cause.
+     * Constructs a XMLException with an explanatory message and cause.
      * 
      * @param message
      *            Detail about the reason for the exception.
@@ -33,7 +26,7 @@ public class XMLException extends RuntimeException {
     }
 
     /**
-     * Constructs a new JSONException with the specified cause.
+     * Constructs a new XMLException with the specified cause.
      * 
      * @param cause
      *            The cause.

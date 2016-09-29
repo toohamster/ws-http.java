@@ -33,6 +33,10 @@ public class File {
         }
         return null;
     }
+    
+    public static final String readFromResource(String resource) {
+        return read(File.class.getResourceAsStream(resource));
+    }
 
     private static final String read(InputStream is) {
         try {

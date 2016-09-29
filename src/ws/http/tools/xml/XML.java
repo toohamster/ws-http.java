@@ -2,6 +2,7 @@ package ws.http.tools.xml;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.xml.transform.OutputKeys;
@@ -10,9 +11,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.stream.StreamResult;
-
 import org.xml.sax.InputSource;
 
+import ws.http.tools.File;
 import ws.http.tools.json.JSON;
 import ws.http.tools.json.JsonArray;
 import ws.http.tools.json.JsonObject;
@@ -20,15 +21,52 @@ import ws.http.tools.json.JsonValue;
 
 public class XML {
 	
-	public static String toXML(Object value, String tag)
+	public static HashMap<?, ?> parseXML(String xml)
+	{
+		return XMLParser.toMap(xml);
+	}
+	
+	public static HashMap<?, ?> parseXMLFile(String path, boolean isUrl) {
+		if (path == null) {
+			throw new NullPointerException("path is null");
+		}
+		if ( isUrl )
+		{
+			return parseXML(File.readFromURL(path));
+		}
+		
+		return parseXML(File.readFromPath(path));
+	}
+	
+	public static String toJSON(String xml)
+	{
+		HashMap<?, ?> map = parseXML(xml);
+		return JSON.toJSON(map);
+	}
+	
+	public static String toXML(Object value)
+	{
+		return toXML(value, "xml");
+	}
+	
+	public static String toXML(Object value, String rootTag)
 	{
 		if (value instanceof JsonValue)
 		{
-			return prettyXml(jsonToXML((JsonValue) value, tag));
+			return prettyXml(jsonToXML((JsonValue) value, rootTag));
 		}
-		value = JSON.toJSON(value);
-		value = JSON.parseJSON((String) value);
-		return prettyXml(jsonToXML((JsonValue) value, tag));
+		
+		if (value instanceof String)
+		{
+			value = JSON.parseJSON((String) value);
+		}
+		else
+		{
+			value = JSON.toJSON(value);
+			value = JSON.parseJSON((String) value);
+		}
+		
+		return prettyXml(jsonToXML((JsonValue) value, rootTag));
 	}
 	
 	private static String jsonToXML(JsonValue json, String tag)
@@ -90,8 +128,6 @@ public class XML {
 		                sb.append('>');
 		            }
 				}
-				
-				
 			}
 			
 			return sb.toString();
@@ -122,12 +158,13 @@ public class XML {
 		
 		return "<" + tag + ">" + val + "</" + tag + ">";
 	}
-	
+			
 	private static String prettyXml(String xml){
+		
         try{
             Transformer serializer= SAXTransformerFactory.newInstance().newTransformer();
             serializer.setOutputProperty(OutputKeys.INDENT, "yes");
-            serializer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+            serializer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "yes");
             serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             Source xmlSource=new SAXSource(new InputSource(new ByteArrayInputStream(xml.getBytes())));
             StreamResult res =  new StreamResult(new ByteArrayOutputStream());            
@@ -138,15 +175,6 @@ public class XML {
         }
     }
 	
-	public static XmlValue parseXML(String string) {
-		
-		return null;
-	}
 	
-	
-	public static XmlValue query() {
-		
-		return null;
-	}
 	
 }
