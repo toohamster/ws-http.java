@@ -29,10 +29,10 @@ public class TestCase {
 		JsonValue jsonobj = null;
 //		logger.info( JSON.stringify(null) );
 //		logger.info( JSON.NULL.toString() );
-		String json = "{\"account_id\":121,\"channel\":{\"a\":[6,6,\"jj\"]},\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
-		jsonobj =  JSON.parseJSON(json);
-//		
-		System.out.println(XML.stringify(json));
+//		String json = "{\"account_id\":121,\"channel\":{\"a\":[6,6,\"jj\"]},\"domain\":\"183.131.145.124\",\"port\":\"80\",\"request_id\":\"e54af3f3-d915-4524-8805-3108d78a2220\",\"request_time\":\"1473833813956\",\"timestamp\":1474251393,\"sign\":\"6905d6e800b8bfed60ca02efbe404abb\"}";
+//		jsonobj =  JSON.parseJSON(json);
+////		
+//		System.out.println(XML.stringify(json));
 ////		System.out.println(XML.stringify(jsonobj));
 		
 //		System.out.println(jsonobj.asObject().get("channel"));
@@ -44,24 +44,14 @@ public class TestCase {
 //
 ////		logger.info( JSON.object().add("list", JSON.array().add(JSON.object().add("id", 123).add("age", 456))).toString() );
 //				
-//		jsonobj = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
-//		System.out.println(XML.stringify(jsonobj, "doc"));
-		HashMap<?, ?> xmlobj = XML.parseXMLFile("C:/tmptt/postmanv1.xml", false);
-		System.out.println();
-		System.out.println();
-		ArrayList<Object> b = new ArrayList<>();
-		b.add("aaa");
-		b.add("aaa");
+		jsonobj = JSON.parseJSONFile("C:/tmptt/postmanv1.json", false);
+//		System.out.println(XML.stringify(jsonobj,"postmanv1"));
 		
-		b.add("aaa");
+		String postman2xml = XML.stringify(jsonobj);
 		
-		HashMap<String, Object> a = new HashMap<>();
-		a.put("ssd", "ddd");
-		a.put("ssd1", jsonobj);
-		a.put("ssd5", JSON.array(1,2));
-		a.put("ssd6", b);
-		a.put("ssd7", "ddd");
-//		System.out.println(JSON.stringify(a));
+//		HashMap<?, ?> xmlobj = XML.parseXMLFile("C:/tmptt/postmanv1.xml", false);
+		HashMap<?, ?> xmlobj = XML.parseXML(postman2xml);
+		System.out.println(JSON.stringify(xmlobj));
 //		System.out.println( XML.stringify(a, "doc"));
 //		logger.info(jsonobj.toString());
 //		System.out.println(JSON.query(jsonobj, "id").asString());

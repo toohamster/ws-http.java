@@ -195,7 +195,7 @@ public class XMLParser {
                         } else if (token instanceof String) {
                             string = (String) token;
                             if (string.length() > 0) {
-                            	accumulate(HashMap, "content", keepStrings ? token : (String) token );
+//                            	accumulate(HashMap, "content", keepStrings ? token : (String) token );
                                 
                             }
 
@@ -207,7 +207,7 @@ public class XMLParser {
                                 } else if (HashMap.size() == 1
                                         && HashMap.get("content") != null) {
                                 	
-                                	accumulate(context, tagName, HashMap.get("content"));
+//                                	accumulate(context, tagName, HashMap.get("content"));
                                 } else {
                                     accumulate(context, tagName, HashMap);
                                 }
