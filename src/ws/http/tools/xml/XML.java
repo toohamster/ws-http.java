@@ -38,18 +38,12 @@ public class XML {
 		return parseXML(File.readFromPath(path));
 	}
 	
-	public static String toJSON(String xml)
+	public static String stringify(Object value)
 	{
-		HashMap<?, ?> map = parseXML(xml);
-		return JSON.toJSON(map);
+		return stringify(value, "xml");
 	}
 	
-	public static String toXML(Object value)
-	{
-		return toXML(value, "xml");
-	}
-	
-	public static String toXML(Object value, String rootTag)
+	public static String stringify(Object value, String rootTag)
 	{
 		if (value instanceof JsonValue)
 		{
@@ -62,7 +56,7 @@ public class XML {
 		}
 		else
 		{
-			value = JSON.toJSON(value);
+			value = JSON.stringify(value);
 			value = JSON.parseJSON((String) value);
 		}
 		

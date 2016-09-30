@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;  
 import java.util.Map; 
 
-public class ToJson {
+public class JsonStringify {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static String toJSON(Object value) {

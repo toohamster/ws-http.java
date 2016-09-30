@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.Reader;
 
 import ws.http.tools.File;
-import ws.http.tools.xml.XML;
 
 /**
  * This class serves as the entry point to the minimal-json API.
@@ -373,21 +372,9 @@ public final class JSON {
 	 * @throws StackOverflowError
 	 *             if the input is nested level too much
 	 */
-	public static String toJSON(Object obj) {
+	public static String stringify(Object obj) {
 		if (obj instanceof JsonValue) return obj.toString();
-		return ToJson.toJSON(obj);
-	}
-	
-	/**
-	 * Convert a json string into a xml.
-	 * 
-	 * @param json
-	 * @return
-	 */
-	public static String toXML(String json, String tag)
-	{
-		JsonValue jv = parseJSON(json);
-		return XML.toXML(jv, tag);
+		return JsonStringify.toJSON(obj);
 	}
 
 	private static String cutOffPointZero(String string) {
