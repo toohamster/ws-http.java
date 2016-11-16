@@ -8,7 +8,6 @@ import ws.http.tools.json.JSON;
 import ws.http.tools.json.JsonValue;
 import ws.http.tools.xml.XML;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.*;
 
