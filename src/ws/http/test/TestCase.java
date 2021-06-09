@@ -17,9 +17,9 @@ public class TestCase {
 	
 	public static void main(String[] args) throws IOException {
 		TestCase obj = new TestCase();
-//		obj.testGet();
-//		obj.testPost();
-		obj.testJson();
+		obj.testGet();
+		obj.testPost();
+//		obj.testJson();
 		
 	}
 	

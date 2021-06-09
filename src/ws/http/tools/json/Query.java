@@ -27,7 +27,7 @@ public class Query {
 					else if (token.isInt())
 					{
 						if ( !result.isArray() ) return JSON.NULL;
-						int index = (int) token.getValue();
+						int index = (Integer) token.getValue();
 						
 						if (index < result.asArray().size())
 						{
