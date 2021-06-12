@@ -17,7 +17,7 @@ public class TestCase {
 	
 	public static void main(String[] args) throws IOException {
 		TestCase obj = new TestCase();
-//		obj.testGet();
+		obj.testGet();
 		obj.testHttpsGet();
 //		obj.testPost();
 //		obj.testJson();
@@ -64,14 +64,9 @@ public class TestCase {
 	public void testGet() throws IOException
 	{
 		Response httpResponse = new Request("http://ip-api.com/json/24.48.0.1")
+				.enableDebug(true)
                 .addHeader("Content-Type", "application/json").getResource();
 
-		logger.info(httpResponse.toString());
-
-        String responseBody = httpResponse.getBody();
-		
-        logger.info(JSON.stringify(responseBody));
-        
 	}
 
 	public void testHttpsGet() throws IOException
@@ -79,6 +74,7 @@ public class TestCase {
 		String url = "https://www.chope.co:443/singapore-restaurants/category/get_top_search?restaurant_keyword=&_=1623464304035";
 
 		Response httpResponse = new Request(url)
+				.enableDebug(true)
 				.addHeader("Content-Type", "application/json").getResource();
 
 //		logger.info(httpResponse.toString());

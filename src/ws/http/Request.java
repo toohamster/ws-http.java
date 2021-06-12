@@ -21,7 +21,7 @@ public class Request extends Message<Request> {
     /**
      * enable debug to print log
      */
-    boolean enableDebug = true;
+    boolean enableDebug = false;
 
     HttpURLConnection connection;
     OutputStreamWriter writer;
@@ -153,6 +153,18 @@ public class Request extends Message<Request> {
         connection.setConnectTimeout(connectTimeout);
         // 设置读取超时时间
         connection.setReadTimeout(readTimeout);
+        return this;
+    }
+
+    /**
+     * enable Debug
+     *
+     * @param enableDebug
+     * @return
+     */
+    public Request enableDebug(boolean enableDebug)
+    {
+        this.enableDebug = enableDebug;
         return this;
     }
 
